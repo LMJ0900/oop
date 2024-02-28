@@ -12,10 +12,10 @@ import java.util.Scanner;
 public class AuthServiceImpl implements service.AuthService {
     private static AuthService instance = new AuthServiceImpl();
 
-    Map<String, MemberDto> users;
+    Map<String, MemberDto> members;
 
     private AuthServiceImpl() {
-        this.users = new HashMap<>();
+        this.members = new HashMap<>();
     }
 
     public static AuthService getInstance() {
@@ -48,37 +48,39 @@ public class AuthServiceImpl implements service.AuthService {
 
 
     @Override
-    public MemberDto findUser(String username) {
-        MemberDto user = new MemberBuilder().build();
+    public MemberDto findMember(String memberName) {
+        MemberDto member = new MemberBuilder().build();
 
-        return user;
+        return member;
     }
 
     @Override
-    public Map<String, MemberDto> getUserMap() {
-        users.forEach((k,v)-> System.out.println("{"+k+","+v+"},"));
-        return users;
+    public Map<String, MemberDto> getMemberMap() {
+        members.forEach((k,v)-> System.out.println("{"+k+","+v+"},"));
+        return members;
     }
 
     @Override
-    public String addUsers() {
+    public String addMembers() {
         Map<String, MemberDto> map = new HashMap<>();
         UtilService util = UtilServiceImpl.getInstance();
         for (int i = 0; i < 5; i++) {
-            String userName = UtilServiceImpl.getInstance().createRandomUserName();
-            map.put(userName,
+            String memberName = UtilServiceImpl.getInstance().createRandomMemberName();
+            map.put(memberName,
                     new MemberBuilder()
-                            .username(userName)
+                            .id(memberName)
                             .pw("1")
                             .pwAgain("1")
                             .name(util.createRandomName())
                             .build());
 
         }
-        users = map;
+        members = map;
         return "더미값 추가";
     }
+
+
     public String count(){
-        return users.size()+"";
+        return members.size()+"";
     }
 }

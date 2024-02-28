@@ -10,7 +10,7 @@ public interface UtilService {
 
     String createRandomPno();
 
-    String createRandomUserName();
+    String createRandomMemberName();
 
     char createRandomInt(int i, int i1);
 }

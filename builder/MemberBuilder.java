@@ -15,7 +15,11 @@ public class MemberBuilder {
     private String job;
     private double height;
     private double weight;
-    private String username;
+    private String MemberName;
+
+
+
+
 
 
 
@@ -73,8 +77,11 @@ public class MemberBuilder {
         return new MemberDto(id, pw, pwAgain, name, personId, phoneNumber, address, job, height, weight);
     }
 
-    public MemberBuilder username(String username) {
-        this.username = username;
+
+
+
+    public MemberBuilder MemberName(String memberName) {
+        this.MemberName = memberName;
         return this;
     }
 

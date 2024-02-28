@@ -9,9 +9,10 @@ public interface AuthService {
     String join(Scanner sc);
     String login();
 
-    String addUsers();
+    Map<String, MemberDto> getMemberMap();
 
-    MemberDto findUser(String username);
-    Map<String, MemberDto> getUserMap();
+    String addMembers();
+
+    MemberDto findMember(String memberName);
     String count();
 }

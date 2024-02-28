@@ -22,12 +22,12 @@ public class UtilServiceImpl implements UtilService {
     }
 
 
-    public String createRandomUserName(){
-        String username = "";
-        for(; username.length() < 5;
-            username += String.valueOf((char)('a' + this.createRandomInteger(0,26))));     //i++자리에 바로 할당, a 아스키코드는 97이므로 97+26 = z이다.
+    public String createRandomMemberName(){
+        String memberName = "";
+        for(; memberName.length() < 5;
+            memberName += String.valueOf((char)('a' + this.createRandomInteger(0,26))));     //i++자리에 바로 할당, a 아스키코드는 97이므로 97+26 = z이다.
 
-        return username;
+        return memberName;
     }
 
     @Override
