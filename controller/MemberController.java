@@ -25,7 +25,7 @@ public class MemberController {
     public String addMembers(){
         return  memberService.addMembers();
     }
-    public int countMembers() {
+    public String countMembers() {
         return memberService.countMembers();
     }
     public String join(Scanner sc){
@@ -50,5 +50,20 @@ public class MemberController {
                 .id(sc.next())
                 .pw(sc.next())
                 .build());
+    }
+    public MemberDto detail(Scanner sc) {
+        System.out.println();
+
+        return memberService.detail(sc.next());
+    }
+
+    public String updatePassword(Scanner sc) {
+        System.out.println("id와 바꿀 비밀번호를 입력해주세요");
+        return memberService.updatePassword(sc.next(), sc.next());
+    }
+
+    public String deleteMember(Scanner sc) {
+
+        return memberService.deleteMember(sc.next());
     }
 }

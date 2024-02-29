@@ -11,8 +11,7 @@ public class MemberView {
     public static void main( Scanner sc ) {
         MemberController memberController = new MemberController();
         System.out.println(memberController.addMembers());
-
-//        System.out.println(" addMembers 결과 : "+msg);
+        //System.out.println(" addMembers 결과 : "+msg);
 
 
         while (true){
@@ -42,6 +41,7 @@ public class MemberView {
                     break;
                 case "4":
                     System.out.println("4-비번변경");
+                    System.out.println(memberController.updatePassword(sc));
                     break;
                 case "5":
                     System.out.println("5-탈퇴");

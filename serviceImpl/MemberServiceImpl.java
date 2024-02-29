@@ -6,9 +6,11 @@ import service.AuthService;
 import service.MemberService;
 import service.UtilService;
 
+import java.lang.reflect.Member;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 public class MemberServiceImpl implements MemberService {
     private static MemberService instance = new MemberServiceImpl();
@@ -50,12 +52,22 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public void updatePassword(MemberDto member) {
+    public String updatePassword(String id, String updatePw) {
+        String msg = "";
+        MemberDto memberDto = members.get(id);
+        if (memberDto==null){
+            msg = "아이디가 틀렸습니다.";
+        }else {
+            memberDto.setPw(updatePw);
+            msg = "비밀번호 변경 완료";
+        }
+        return msg;
 
     }
 
     @Override
     public String deleteMember(String memberName) {
+        members.remove(memberName);
         return null;
     }
 
@@ -80,7 +92,7 @@ public class MemberServiceImpl implements MemberService {
 
 
     @Override
-    public int countMembers() {return members.size();
+    public String countMembers() {return members.size()+"";
     }
 
     @Override

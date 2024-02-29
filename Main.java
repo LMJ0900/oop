@@ -10,7 +10,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         while (true) {
-            System.out.println("0-종료 1-회원관리 2-성적표 3-게시판 4-카우프 5-사용자관리(맵)");
+            System.out.println("0-종료 1-회원관리 2-성적표 3-게시판 4-카우프 5-사용자관리(맵) 6-은행계좌");
             switch (sc.next()) {
                 case "0":
                     System.out.println("종료");
@@ -20,6 +20,7 @@ public class Main {
                 case "3": BoardView.main(); break;
                 case "4": KaupView.main(sc);  break;
                 case "5": MemberView.main(sc); break;
+                case "6": AccountView.main(sc); break;
             }
         }
     }

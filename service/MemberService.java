@@ -10,7 +10,7 @@ public interface MemberService {
     String login(MemberDto member);
     MemberDto detail(String memberName);
 
-    void updatePassword(MemberDto member);
+    String updatePassword(String memberName, String updatePw);
 
     String deleteMember(String memberName);
 
@@ -19,7 +19,7 @@ public interface MemberService {
     List<MemberDto> findUsersByName(String Name);
     List<MemberDto> findUsersByJob(String job);
 
-    int countMembers();
+    String countMembers();
 
     String addMembers();
 }
