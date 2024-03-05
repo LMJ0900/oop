@@ -1,23 +1,23 @@
 package service;
 
-import model.MemberDto;
+import model.Member;
 
 import java.util.List;
 import java.util.Map;
 
 public interface MemberService {
-    String join(MemberDto member);
-    String login(MemberDto member);
-    MemberDto detail(String memberName);
+    String join(Member member);
+    String login(Member member);
+    Member detail(String memberName);
 
     String updatePassword(String memberName, String updatePw);
 
     String deleteMember(String memberName);
 
-    Map<String, MemberDto> getMemberMap();
+    Map<String, Member> getMemberMap();
 
-    List<MemberDto> findUsersByName(String Name);
-    List<MemberDto> findUsersByJob(String job);
+    List<?> findUsersByName(String Name);
+    List<Member> findUsersByJob(String job);
 
     String countMembers();
 

@@ -1,21 +1,17 @@
 package serviceImpl;
 
-import builder.MemberBuilder;
-import model.MemberDto;
-import service.AuthService;
+import model.Member;
 import service.MemberService;
 import service.UtilService;
 
-import java.lang.reflect.Member;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
 
 public class MemberServiceImpl implements MemberService {
     private static MemberService instance = new MemberServiceImpl();
 
-    Map<String, MemberDto> members;
+    Map<String, Member> members;
 
     private MemberServiceImpl() {
         this.members = new HashMap<>();
@@ -27,15 +23,15 @@ public class MemberServiceImpl implements MemberService {
 
 
     @Override
-    public String join(MemberDto member) {
+    public String join(Member member) {
         members.put(member.getId(), member);
         return "회원가입성공";
     }
 
     @Override
-    public String login(MemberDto member) {
+    public String login(Member member) {
         String msg = "";
-        MemberDto memberDto = members.get(member.getId());
+        Member memberDto = members.get(member.getId());
         if (memberDto==null){
             msg = "아이디가 틀렸습니다.";
         }else if (memberDto.getPw().equals(member.getPw())){
@@ -47,14 +43,14 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public MemberDto detail(String memberName) {
+    public Member detail(String memberName) {
         return null;
     }
 
     @Override
     public String updatePassword(String id, String updatePw) {
         String msg = "";
-        MemberDto memberDto = members.get(id);
+        Member memberDto = members.get(id);
         if (memberDto==null){
             msg = "아이디가 틀렸습니다.";
         }else {
@@ -72,7 +68,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public Map <String, MemberDto> getMemberMap() {
+    public Map <String, Member> getMemberMap() {
         /*Map<String, MemberDto> members = memberController.getMemberMap();*/
         /*members.forEach((k,v)-> {
             System.out.printf("아이디 : %s, 회원정보: %s\n", k, v);
@@ -81,12 +77,12 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public List<MemberDto> findUsersByName(String Name) {
+    public List<Member> findUsersByName(String Name) {
         return null;
     }
 
     @Override
-    public List<MemberDto> findUsersByJob(String job) {
+    public List<Member> findUsersByJob(String job) {
         return null;
     }
 
@@ -97,12 +93,12 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public String addMembers() {
-        Map<String, MemberDto> map = new HashMap<>();
+        Map<String, Member> map = new HashMap<>();
         UtilService util = UtilServiceImpl.getInstance();
         for (int i = 0; i < 5; i++) {
             String memberName = UtilServiceImpl.getInstance().createRandomMemberName();
             map.put(memberName,
-                    new MemberBuilder()
+                    Member.builder()
                             .id(memberName)
                             .pw("1")
                             .pwAgain("1")

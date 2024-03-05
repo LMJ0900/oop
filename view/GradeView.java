@@ -1,9 +1,7 @@
 package view;
 
-import builder.MemberBuilder;
-import builder.SubjectBuilder;
-import model.MemberDto;
-import model.SubjectDto;
+import model.Member;
+import model.Subject;
 import service.GradeService;
 import service.UtilService;
 import serviceImpl.GradeServiceImpl;
@@ -19,17 +17,17 @@ public class GradeView {
 
         UtilService util = UtilServiceImpl.getInstance();
         GradeService grade = GradeServiceImpl.getInstance();
-        MemberDto Student = new MemberBuilder()
+        Member Student = Member.builder()
                 .name(sc.next())
                 .build();
-        SubjectDto subjects = new SubjectBuilder()
+        Subject subjects = Subject.builder()
                 .korean(util.createRandomInteger(0,100))
                 .english(util.createRandomInteger(0,100))
                 .math(util.createRandomInteger(0,100))
                 .build();
 
         int totalScore = grade.getTotalScore(subjects);
-        int average =  grade.findAverage(totalScore);
+        double average =  grade.findAverage(totalScore);
 
         System.out.printf(" =========== 성적표 ==========\n 국어" +
                         " Korean : %s \n" +
@@ -37,7 +35,7 @@ public class GradeView {
                         "Math %s \n " +
                         "Total : %s \n " +
                         "Average : %s",
-                subjects.getKor(),
+                subjects.getKorean(),
                 subjects.getEnglish(),
                 subjects.getMath(),
                 totalScore,

@@ -1,6 +1,6 @@
 package controller;
 
-import model.MemberDto;
+import model.Member;
 import service.AuthService;
 import serviceImpl.AuthServiceImpl;
 
@@ -32,11 +32,11 @@ public class AuthController  {
         return "";
     }
 
-    public MemberDto findUser(Scanner sc) {
+    public Member findUser(Scanner sc) {
         System.out.println("검색할 id 입력 : ");
         return auth.findMember(sc.next());
     }
-    public Map<String, MemberDto> getMemberMap(){
+    public Map<String, Member> getMemberMap(){
         return auth.getMemberMap();
     }
 

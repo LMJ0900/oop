@@ -1,8 +1,7 @@
 package view;
 
 import controller.MemberController;
-import model.MemberDto;
-import serviceImpl.MemberServiceImpl;
+import model.Member;
 
 import java.util.Map;
 import java.util.Scanner;
@@ -48,7 +47,7 @@ public class MemberView {
                     break;
                 case "6":
                     System.out.println("6-회원목록");
-                    Map<String, MemberDto> members = memberController.getMemberMap();
+                    Map<String, Member> members = memberController.getMemberMap();
                     members.forEach((k,v)->{
                         System.out.printf("아이디 : %s, 회원정보: %s\n", k,v);
                     });

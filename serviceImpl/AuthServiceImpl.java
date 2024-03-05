@@ -1,21 +1,24 @@
 package serviceImpl;
 
-import builder.MemberBuilder;
-import model.MemberDto;
+import model.Member;
 import service.AuthService;
 import service.UtilService;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class AuthServiceImpl implements service.AuthService {
     private static AuthService instance = new AuthServiceImpl();
 
-    Map<String, MemberDto> members;
+    Map<String, Member> members;
+    List<Member> memberlist;
+
+
 
     private AuthServiceImpl() {
+
         this.members = new HashMap<>();
+        this.memberlist = new ArrayList<>() {
+        };
     }
 
     public static AuthService getInstance() {
@@ -28,7 +31,7 @@ public class AuthServiceImpl implements service.AuthService {
                 "이름, 주민번호 전화번호, " +
                 "주소, 직업을 입력해주세요");
 
-        MemberDto person = new MemberBuilder()
+        Member person = Member.builder()
                 .id(sc.next(sc.next()))
                 .pw(sc.next(sc.next()))
                 .pwAgain(sc.next())
@@ -48,26 +51,26 @@ public class AuthServiceImpl implements service.AuthService {
 
 
     @Override
-    public MemberDto findMember(String memberName) {
-        MemberDto member = new MemberBuilder().build();
+    public Member findMember(String memberName) {
+        Member member = Member.builder().build();
 
         return member;
     }
 
     @Override
-    public Map<String, MemberDto> getMemberMap() {
+    public Map<String, Member> getMemberMap() {
         members.forEach((k,v)-> System.out.println("{"+k+","+v+"},"));
         return members;
     }
 
     @Override
     public String addMembers() {
-        Map<String, MemberDto> map = new HashMap<>();
+        Map<String, Member> map = new HashMap<>();
         UtilService util = UtilServiceImpl.getInstance();
         for (int i = 0; i < 5; i++) {
             String memberName = UtilServiceImpl.getInstance().createRandomMemberName();
             map.put(memberName,
-                    new MemberBuilder()
+                    Member.builder()
                             .id(memberName)
                             .pw("1")
                             .pwAgain("1")

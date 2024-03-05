@@ -1,7 +1,6 @@
 package controller;
 
-import builder.MemberBuilder;
-import model.MemberDto;
+import model.Member;
 import service.MemberService;
 import serviceImpl.MemberServiceImpl;
 
@@ -17,7 +16,7 @@ public class MemberController {
         this.memberService = MemberServiceImpl.getInstance();
 
     }
-    public Map<String, MemberDto> getMemberMap() {
+    public Map<String, Member> getMemberMap() {
         return memberService.getMemberMap();
     }
 
@@ -32,7 +31,7 @@ public class MemberController {
         System.out.println("ID, 비밀번호, 비밀번호 확인, " +
                 "이름, 주민번호 전화번호, " +
                 "주소, 직업을 입력해주세요");
-        return memberService.join(new MemberBuilder()
+        return memberService.join(Member.builder()
                 .id(sc.next())
                 .pw(sc.next())
                 .pwAgain(sc.next())
@@ -46,12 +45,12 @@ public class MemberController {
 
     public String login(Scanner sc){
         System.out.println("ID와 비밀번호를 입력해주세요");
-        return memberService.login(new MemberBuilder()
+        return memberService.login(Member.builder()
                 .id(sc.next())
                 .pw(sc.next())
                 .build());
     }
-    public MemberDto detail(Scanner sc) {
+    public Member detail(Scanner sc) {
         System.out.println();
 
         return memberService.detail(sc.next());

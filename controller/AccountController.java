@@ -1,11 +1,9 @@
 package controller;
 
-import builder.AccountBuilder;
-import model.AccountDto;
+import model.Account;
 import service.AccountService;
 import serviceImpl.AccountServiceImpl;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class AccountController {
@@ -19,7 +17,7 @@ public class AccountController {
     public String createAccount(Scanner sc) {
         System.out.println("이름, 주민번호, 전화번호, " +
                 "계좌번호, 비밀번호를 입력해주세요");
-        return accountService.createAccount(new AccountBuilder()
+        return accountService.createAccount(Account.builder()
                 .id(sc.nextLong())
                 .accountNumber(sc.next())
                 .accountHolder(sc.next())
@@ -29,7 +27,7 @@ public class AccountController {
     }
 
     public String deposit(Scanner sc) {
-        return accountService.deposit(new AccountBuilder()
+        return accountService.deposit(Account.builder()
                 .id(sc.nextLong())
                 .accountNumber(sc.next())
                 .accountHolder(sc.next())
@@ -40,7 +38,7 @@ public class AccountController {
     }
 
     public String withdraw(Scanner sc) {
-        return accountService.withdraw(new AccountBuilder()
+        return accountService.withdraw(Account.builder()
                 .id(sc.nextLong())
                 .accountNumber(sc.next())
                 .accountHolder(sc.next())
